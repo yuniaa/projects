@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection"content="telephone=no, email=no" />
+<title>Examples</title>
+<link rel="stylesheet" href="">
+<style>
+* {
+	margin: 0;
+	padding: 0
+}
+img {
+	width: 100%;
+	vertical-align: top;
+}
+#box {
+	width: 66%;
+}
+</style>
+</head>
+<body>
+
+	<h1>根据data-xxx设置图片真实宽高</h1>
+	
+	<div id="box">
+		<h3>提供宽高后计算出高：</h3>
+		<img src="https://img01.miyabaobei.com/d1/p5/2017/02/24/4b/40/4b405564b4d1651ffd7e310f96b04539270618402.jpg" data-width="1920" data-height="480" alt="">
+		<h3>未提供宽高，默认缩放：</h3>
+		<img src="https://img01.miyabaobei.com/d1/p5/2017/02/24/4b/40/4b405564b4d1651ffd7e310f96b04539270618402.jpg" alt="">
+		<h3>后追加的img，宽高已设置：</h3>
+	</div>
+	
+<script>
+window.onload = function(){
+
+	function setImgHeight(oImg) {
+		var _width = oImg.getAttribute('data-width'),
+			_height = oImg.getAttribute('data-height');
+		if (_width && _height) {
+			oImg.height = oImg.offsetWidth * _height / _width;
+		}
+	}
+
+	var aImg = document.getElementsByTagName('img');
+	for (var i = 0, len = aImg.length; i < len; i++) {
+		setImgHeight(aImg[i])
+	};
+
+
+	//测试setImgHeight函数有参数时的效果
+	function createImg() {
+		var img = document.createElement('img');
+		img.src = 'https://img01.miyabaobei.com/d1/p5/2017/02/24/4b/40/4b405564b4d1651ffd7e310f96b04539270618402.jpg';
+		img.id = 'cusImg';
+		img.setAttribute('data-width', 1000);
+		img.setAttribute('data-height', 500);
+		return img;
+	}
+	setTimeout(function(){
+		var temp = createImg();
+		document.getElementById('box').appendChild(temp);
+		setImgHeight(temp);
+	}, 1000)
+	
+};
+</script>
+</body>
+</html>

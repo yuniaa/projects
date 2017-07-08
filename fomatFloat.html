@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection"content="telephone=no, email=no" />
+<title>Examples</title>
+</head>
+<body>
+<h1>open console</h1>
+
+<script>
+function addPoint(num) {
+	num = Number(num);
+	if (num.toString().indexOf('.') == -1) {
+		return num;
+	} else {
+		var a = num.toString().split('.');
+		if (a[1]) {
+			var d = (a[1] + '').charAt(0);
+			return (d !== '0') ? a[0] + '.' + d : a[0];
+		};
+	}
+}
+
+function fomatFloat(src, pos) {
+	pos = pos || 1;
+	return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos);
+}
+
+var count = 100000;
+
+console.time('addPoint');
+for (var i = 0; i < count; i++) {
+	var randNum = Math.random() * 10;
+	addPoint(randNum);
+	if (i == 0) {
+		console.log(randNum + ' -> ' + addPoint(randNum))
+	};
+};
+console.timeEnd('addPoint');
+
+
+console.time('fomatFloat');
+for (var i = 0; i < count; i++) {
+	var randNum = Math.random() * 10;
+	fomatFloat(randNum, 1);
+	if (i == 0) {
+		console.log(randNum + ' -> ' + fomatFloat(randNum))
+	};
+};
+console.timeEnd('fomatFloat');
+
+</script>
+</body>
+</html>

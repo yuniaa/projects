@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection"content="telephone=no, email=no" />
+<title>Demo List</title>
+<link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+
+<div class="demolist">
+	<h1>一些测试时的例子</h1>
+	<ul>
+		<li><a href="H5_750.html"></a></li>
+		<li><a href="scrollbar.html"></a></li>
+		<li><a href="h5滑动方向判断.html"></a></li>
+		<li><a href="fomatFloat.html"></a></li>
+		<li><a href="全选.html"></a></li>
+		<li><a href="处理小数点.html"></a></li>
+		<li><a href="锚点链接平滑滚动.html"></a></li>
+		<li><a href="location.href.html"></a></li>
+		<li><a href="getQueryString.html"></a></li>
+	</ul>
+</div>
+
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.10.0/jquery.min.js"></script>
+<script>
+$(function(){
+	$('a').each(function(index, el) {
+		var _this = $(this),
+			href = _this.attr('href').split(/.html|.htm/g)[0];
+		_this.html(href);
+	});
+})
+</script>
+
+</body>
+</html>

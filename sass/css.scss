@@ -1,0 +1,17 @@
+//reset
+@import 'base/reset';
+
+.demolist{
+	padding: 10px;
+	h1{
+		font-size: 24px;
+	}
+	ul{
+		margin-left: 2em;
+		li{
+			font-size: 18px;
+			list-style-type: disc;
+		}
+	}
+}
+

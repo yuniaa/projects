@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection"content="telephone=no, email=no" />
+<title>Examples</title>
+<link rel="stylesheet" href="">
+</head>
+<body>
+
+<script>
+
+//获取url各部分链接的方法
+function parseURL(url) {
+	var a = document.createElement('a');
+	a.href = url;
+	return {
+		source: url,
+		protocol: a.protocol.replace(':', ''),
+		host: a.hostname,
+		port: a.port,
+		query: a.search,
+		params: (function() {
+			var ret = {},
+				seg = a.search.replace(/^\?/, '').split('&'),
+				len = seg.length,
+				i = 0,
+				s;
+			for (; i < len; i++) {
+				if (!seg[i]) {
+					continue;
+				}
+				s = seg[i].split('=');
+				ret[s[0]] = s[1];
+			}
+			return ret;
+		})(),
+		file: (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1],
+		hash: a.hash.replace('#', ''),
+		path: a.pathname.replace(/^([^\/])/, '/$1'),
+		relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1],
+		segments: a.pathname.replace(/^\//, '').split('/')
+	};
+}
+var url = 'http://www.miyabaobei.com/main/index_app/?name=long&age=29&sex=man#anchor';
+
+var o = parseURL(url);
+
+for(var name in o){
+	console.log(name + ' : ' +o[name])
+}
+
+// source : http://www.miyabaobei.com/main/index_app/?name=long&age=29&sex=man
+// protocol : http
+// host : www.miyabaobei.com
+// port : 
+// query : ?name=long&age=29&sex=man
+// params : [object Object]
+// file : 
+// hash : 
+// path : /main/index_app/
+// relative : /main/index_app/?name=long&age=29&sex=man
+// segments : main,index_app,
+</script>
+</body>
+</html>

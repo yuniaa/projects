@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+//reset
+*{
+	margin:0;
+	padding: 0;
+}
+
+%scrolldiv{
+	width: 500px;
+	height: 100px;
+	overflow-y: auto;
+}
+
+.win{
+	@extend %scrolldiv;
+	border: 1px solid #000;
+}
+
+.mac{
+	@extend %scrolldiv;
+	border: 1px solid #f00;
+	//吨动态
+	&::-webkit-scrollbar {
+	    -webkit-appearance: none;
+	    width: 17px;
+	    background: #f1f1f1;
+	}
+	//滑块
+	&::-webkit-scrollbar-thumb {
+		margin: 0 1px;
+		border-left: 2px solid #f1f1f1;
+		border-right: 2px solid #f1f1f1;
+	    background-color: #c1c1c1;
+	    &:hover{
+	    	background-color: #A9A9A9;
+	    }
+	}
+	/* 定义垂直滚动条渐增按扭的样式 */
+    &::-webkit-scrollbar-button:vertical:increment {
+      	background: url(../images/vertical-increment-arrow.png) center no-repeat;
+    	&:hover{
+    		background-color: #D2D2D2;
+    	}
+    }
+    /* 定义垂直滚动条渐减按扭的样式 */
+    &::-webkit-scrollbar-button:vertical:decrement {
+	    background: url(../images/vertical-decrement-arrow.png) center no-repeat;
+    	&:hover{
+    		background-color: #D2D2D2;
+    	}
+	}
+
+
+}

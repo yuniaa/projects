@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection"content="telephone=no, email=no" />
+<title>Examples</title>
+<link rel="stylesheet" href="">
+</head>
+<body>
+<h1>open console</h1>
+<script>
+/**
+ * getQueryStr 获取url参数
+ * URL: http://www.mia.com/?id=value
+ * @参数name  	{[string]}  	'id'
+ * @调用方法  					getQueryStr('id')
+ * @返回值  	{[string]}      'value'
+ */
+function getQueryStr(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	var search = '?id=value' // http://www.mia.com/?id=value -> ?id=value
+	var r = search.substr(1).match(reg);
+	if (r != null) return unescape(r[2]);
+	return null;
+}
+console.log(getQueryStr('id'))
+
+/**
+ * UrlSearch 基本分割法获取url参数
+ * URL: http://www.mia.com/?id=value
+ * @调用方法  					UrlSearch().id
+ * @返回值  	{[string]}      'value'
+ */
+function UrlSearch() {
+	var o = {};
+	var name, value;
+	// var str = location.href; //取得整个地址栏
+	var str = 'http://www.mia.com/?id=value'; //取得整个地址栏
+	var num = str.indexOf("?");
+	str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+
+	var arr = str.split("&"); //各个参数放到数组里
+	for (var i = 0; i < arr.length; i++) {
+		num = arr[i].indexOf("=");
+		if (num > 0) {
+			name = arr[i].substring(0, num);
+			value = arr[i].substr(num + 1);
+			o[name] = value;
+		}
+	}
+	return o;
+}
+console.log(UrlSearch().id)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection"content="telephone=no, email=no" />
+<title>Examples</title>
+</head>
+<body>
+
+<label for="all">
+	<input type="checkbox" name="" id="all"> 全选
+</label>
+
+<label for="btn-1">
+	<input type="checkbox" name="" class="btn-else" id="btn-1"> 按钮1
+</label>
+
+<label for="btn-2">
+	<input type="checkbox" name="" class="btn-else" id="btn-2"> 按钮2
+</label>
+
+<label for="btn-3">
+	<input type="checkbox" name="" class="btn-else" id="btn-3"> 按钮3
+</label>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(function(){
+	var $btn_all = $('#all'),
+		$btn_else= $('.btn-else');
+
+	var count = 0,
+		max = $btn_else.length;
+
+	$btn_all.on('click', function() {
+		if ($(this).prop('checked')) {
+			$btn_else.prop('checked', true);
+			count = max;
+		}else{
+			$btn_else.prop('checked', false);
+			count = 0;
+		}
+	});
+
+	$btn_else.on('click', function() {
+		if ($(this).prop('checked')) {
+			count++;
+		}else{
+			count--;
+		}
+		if (count === max) {
+			$btn_all.prop('checked', true);
+		}else{
+			$btn_all.prop('checked', false);
+		}
+	});
+
+});
+</script>
+</body>
+</html>
